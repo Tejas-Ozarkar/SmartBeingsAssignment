@@ -1,10 +1,41 @@
 <div class="home-main">
     <div class="header">
         <h1>User Directory</h1>
+        <button class="btn btn-primary" (click)="toggleNewUser()">Add new user</button>
     </div>
     <div class="content">
-        <ul *ngFor="let user of users">
-            <li>{{user.username}}</li>
-        </ul>
+        <div class="user-data">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>USER NAME</th>
+                        <th>ADDRESS</th>
+                        <th>CONTACT</th>
+                        <th>EMAIL</th>
+                        <th class="action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.username}}</td>
+                        <td>{{user.address}}</td>
+                        <td>{{user.contact}}</td>
+                        <td>{{user.email}}</td>
+                        <td class="action">
+                            <div class="dropdown">
+                                <button class="" type="button" data-toggle="dropdown"><img src="assets/img/more.png"></button>
+                                <ul class="dropdown-menu">
+                                    <li><a (click)="editUser(user)">Edit User Details</a></li>
+                                    <li><a (click)="deleteUser()">Delete User</a></li>
+                                </ul>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+<new-user (closePanelEvent)="toggleNewUser()" (addUserEvent)="addUser($event)" *ngIf="flagNewUser"></new-user>
+<edit-user *ngIf="flagEditUser"></edit-user>
