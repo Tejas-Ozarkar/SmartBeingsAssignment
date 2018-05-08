@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   users: Array<User>;
   flagNewUser: boolean = false;
   flagEditUser: boolean = false;
+  selectedUser: User;
 
   constructor(private _userService: UserService) { }
 
@@ -27,13 +28,36 @@ export class HomeComponent implements OnInit {
 
   addUser(user: User){
     this.toggleNewUser();
-    console.log(user);
+    this._userService.addUser(user)
+    .subscribe(resNewUser=>{
+      this.users.push(resNewUser);
+    });
   }
-  editUser(user: User){
+  showEditUser(user: User){
     this.toggleEditUser();
-    console.log(user);
+    this.selectedUser = user;
   }
   toggleEditUser(){
     this.flagEditUser = (this.flagEditUser==true)?false:true;
+  }
+
+  editUser(user: User){
+    this.toggleEditUser();
+    this._userService.updateUser(user)
+    .subscribe(resUpdatedUser=>{
+      console.log('updated');
+    });
+  }
+  deleteUser(user: User){
+    let usersArray = this.users;
+    this._userService.deleteUser(user)
+      .subscribe(resDeletedUser => {
+          for(let i=0;i<usersArray.length;i++){
+            if(usersArray[i]._id === user._id){
+              usersArray.splice(i,1);
+            }
+          }
+
+      });
   }
 }

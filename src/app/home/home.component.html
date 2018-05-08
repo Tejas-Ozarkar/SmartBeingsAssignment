@@ -1,7 +1,7 @@
 <div class="home-main">
     <div class="header">
         <h1>User Directory</h1>
-        <button class="btn btn-primary" (click)="toggleNewUser()">Add new user</button>
+        <button class="btn btn-primary" (click)="toggleNewUser()"><img src="assets/img/add.png" height="18px" style="margin-right: 10px;margin-top: -5px" >Add new user</button>
     </div>
     <div class="content">
         <div class="user-data">
@@ -17,19 +17,19 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of users">
-                        <td>{{user.username}}</td>
+                        <td><img class="profile-pic" src="assets/img/user.png">{{user.username}}</td>
                         <td>{{user.address}}</td>
                         <td>{{user.contact}}</td>
                         <td>{{user.email}}</td>
                         <td class="action">
                             <div class="dropdown">
                                 <button class="" type="button" data-toggle="dropdown"><img src="assets/img/more.png"></button>
-                                <ul class="dropdown-menu">
-                                    <li><a (click)="editUser(user)">Edit User Details</a></li>
-                                    <li><a (click)="deleteUser()">Delete User</a></li>
-                                </ul>
-                            </div>
+                                <div class="dropdown-menu">
+                                    <button (click)="showEditUser(user)" class="dropdown-anchor"><img src="assets/img/edit.png">Edit User Details</button>
 
+                                    <button (click)="deleteUser(user)" class="dropdown-anchor"><img src="assets/img/bin.png">Delete User</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -38,4 +38,4 @@
     </div>
 </div>
 <new-user (closePanelEvent)="toggleNewUser()" (addUserEvent)="addUser($event)" *ngIf="flagNewUser"></new-user>
-<edit-user *ngIf="flagEditUser"></edit-user>
+<edit-user (closeEditEvent)="toggleEditUser()" (editUserEvent)="editUser($event)" [user]="selectedUser" *ngIf="flagEditUser"></edit-user>
