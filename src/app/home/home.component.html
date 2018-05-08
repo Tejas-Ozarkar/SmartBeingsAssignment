@@ -3,6 +3,8 @@
         <h1>User Directory</h1>
     </div>
     <div class="content">
-        content here
+        <ul *ngFor="let user of users">
+            <li>{{user.username}}</li>
+        </ul>
     </div>
 </div>

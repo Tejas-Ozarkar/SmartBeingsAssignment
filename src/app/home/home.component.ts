@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './../user';
+import { UserService } from './../user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [UserService]
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  users: Array<User>;
 
-  ngOnInit() {
+  constructor(private _userService: UserService) { }
+
+  ngOnInit() { 
+    this._userService.getUsers()
+    .subscribe(resUserData => this.users = resUserData);
   }
 
 }
