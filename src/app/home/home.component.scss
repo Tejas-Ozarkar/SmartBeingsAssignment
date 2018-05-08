@@ -1,104 +1,122 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-.home-main {
-    font-family: 'Raleway', sans-serif;
-}
-
-.header {
-    width: 100%;
-    background: white;
-    padding: 30px 150px;
-    color: #333;
-    border-bottom: 1px solid rgb(231, 231, 231);
-    overflow: hidden;
-    h1 {
-        float: left;
+    @import url(https://fonts.googleapis.com/css?family=Raleway);
+    .home-main {
+        font-family: 'Raleway', sans-serif;
     }
-    button {
-        float: right;
-    }
-}
-
-.content {
-    width: 100%;
-    background: rgb(243, 241, 241);
-    padding: 50px 150px;
-    .user-data {
-        background: white;
+    
+    .header {
         width: 100%;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(212, 210, 210, 0.37), 0 6px 20px 0 rgba(212, 210, 210, 0.363);
-        .table,
-        tr,
-        td,
-        th {
-            border: none !important;
-        }
-        .table {
-            thead {
-                border-bottom: 1px solid rgba(231, 231, 231, 0.63);
-                th {
-                    color: rgb(190, 187, 187);
-                    font-size: 13px;
-                    font-weight: BOLD;
-                }
+        background: white;
+        padding: 30px 150px;
+        color: #333;
+        border-bottom: 1px solid rgb(231, 231, 231);
+        overflow: hidden;
+    }
+    
+    .content {
+        width: 100%;
+        background: rgb(243, 241, 241);
+        .user-data {
+            background: white;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(212, 210, 210, 0.37), 0 6px 20px 0 rgba(212, 210, 210, 0.363);
+            .table,
+            tr,
+            td,
+            th {
+                border: none !important;
             }
-            tbody {
-                color: #333;
-                font-weight: bold;
-                font-size: 14px;
-                tr {
-                    border-bottom: 1px solid rgba(231, 231, 231, 0.63) !important;
-                    z-index: 0;
-                    overflow: hidden;
-                    height: 100%;
+            .table {
+                thead {
+                    border-bottom: 1px solid rgba(231, 231, 231, 0.63);
+                    th {
+                        color: rgb(190, 187, 187);
+                        font-size: 13px;
+                        font-weight: BOLD;
+                    }
                 }
-                tr:hover {
-                    outline: 2px solid rgb(41, 123, 255) !important;
-                    z-index: 2;
-                    height: 100%;
-                }
-                .action {
-                    width: 20px;
-                    height: 100%;
-                    img {
+                tbody {
+                    color: #333;
+                    font-weight: bold;
+                    font-size: 14px;
+                    tr {
+                        border-bottom: 1px solid rgba(231, 231, 231, 0.63) !important;
+                        z-index: 0;
+                        overflow: hidden;
+                        height: 100%;
+                    }
+                    tr:hover {
+                        outline: 2px solid rgb(41, 123, 255) !important;
+                        z-index: 2;
+                        height: 100%;
+                    }
+                    .action {
                         width: 20px;
-                    }
-                    .dropdown button {
-                        background: none;
-                        border: none;
-                        cursor: pointer;
-                        margin: 0;
-                        padding: 0;
-                    }
-                    .dropdown button:focus {
-                        outline: none;
-                    }
-                    .dropdown-menu {
-                        margin-top: 35px;
-                        margin-right: 180px;
-                        width: 200px;
-                        height: 100px;
-                        .dropdown-anchor {
-                            text-align: start;
-                            padding: 0px 10px;
-                            width: 100%;
-                            height: 50%;
-                            font-size: 13px;
-                            color: #333;
-                            text-decoration: none;
-                            font-weight: bold;
-                            border-radius: 10px;
+                        height: 100%;
+                        img {
+                            width: 20px;
+                        }
+                        .dropdown button {
+                            background: none;
+                            border: none;
                             cursor: pointer;
-                            img {
-                                margin-right: 10px;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .dropdown button:focus {
+                            outline: none;
+                        }
+                        .dropdown-menu {
+                            margin-top: 35px;
+                            margin-right: 180px;
+                            width: 200px;
+                            height: 100px;
+                            .dropdown-anchor {
+                                text-align: start;
+                                padding: 0px 10px;
+                                width: 100%;
+                                height: 50%;
+                                font-size: 13px;
+                                color: #333;
+                                text-decoration: none;
+                                font-weight: bold;
+                                border-radius: 10px;
+                                cursor: pointer;
+                                img {
+                                    margin-right: 10px;
+                                }
                             }
                         }
                     }
-                }
-                .profile-pic {
-                    margin-right: 20px;
+                    .profile-pic {
+                        margin-right: 20px;
+                    }
                 }
             }
         }
     }
-}
+    
+    @media (min-width: 767.99px) {
+        .header {
+            h1 {
+                float: left;
+            }
+            button {
+                float: right;
+            }
+        }
+        .content {
+            padding: 50px 150px;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .header {
+            text-align: center;
+            h1 {
+                margin-bottom: 30px;
+            }
+        }
+    }
+    
+    @media (max-width: 575.98px) {}

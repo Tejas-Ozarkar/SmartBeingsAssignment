@@ -30,7 +30,8 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmitEditUser(user: User){
+    console.log(user);
     this.editUserEvent.emit(user);
-    console.log(this.oldUser);
+    
   }
 }
