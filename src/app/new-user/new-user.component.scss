@@ -9,6 +9,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    h3 {
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: #333;
+    }
     .new-user-card {
         width: 40%;
         background: rgb(245, 244, 244);

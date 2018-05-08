@@ -1,15 +1,17 @@
 <div class="edit-main">
     <div class="edit-user-card">
-        <h3>Add New User</h3>
+        <h3>Edit User</h3>
         <button (click)="closePanel()" class="close-button">x</button>
         <form (ngSubmit)="onSubmitEditUser(form.value)" #form="ngForm">
             <div class="top row">
                 <div class="col-md-4">
                     <div class="profile">
                         <div class="profile-circle">
-                            <img src="assets/img/user.png">
+                            <img src="assets/img/avatar.png">
                         </div>
-                        <button>Upload</button><img src="assets/img/bin.png">
+                        <div class="edit-buttons">
+                            <button>Update</button><img src="assets/img/bin.png">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-8">

@@ -9,6 +9,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    h3 {
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: #333;
+    }
     .edit-user-card {
         width: 40%;
         background: rgb(245, 244, 244);
@@ -49,20 +54,37 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                overflow: hidden;
+                img {
+                    width: auto;
+                    height: 100%;
+                }
             }
-            button {
+            .edit-buttons {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
                 margin-top: 10px;
-                background: white;
-                width: 60%;
-                border: 1px solid rgb(218, 218, 218);
-                border-radius: 5px;
-                cursor: pointer;
-                float: left;
-            }
-            img {
-                width: 20%;
-                float: right;
-                height: 50px;
+                button {
+                    background: white;
+                    width: 60%;
+                    border: 1px solid rgb(218, 218, 218);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    float: left;
+                }
+                img {
+                    margin-left: 10px;
+                    height: 100%;
+                    width: 15%;
+                    float: right;
+                    height: 18px;
+                    width: auto;
+                    padding: 1px 5px;
+                    cursor: pointer;
+                }
             }
         }
     }
