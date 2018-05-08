@@ -19,9 +19,7 @@ export class NewUserComponent implements OnInit {
     this.closePanelEvent.emit();
   }
   onSubmitAddUser(user: User){
-    if(user.username==""&&user.address==""&&user.contact==""&&user.email==""){
-      alert('Please fill all the details');
-    }else if(!this.validateEmail(user.email)){
+    if(!this.validateEmail(user.email)){
       alert('Invalid email');
     }else if(!this.validateContact(user.contact)){
       alert('Invalid contact');
