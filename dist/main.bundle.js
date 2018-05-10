@@ -176,6 +176,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var $ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 var EditUserComponent = /** @class */ (function () {
     function EditUserComponent() {
         this.closeEditEvent = new core_1.EventEmitter();
@@ -356,6 +357,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var $ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 var NewUserComponent = /** @class */ (function () {
     function NewUserComponent() {
         this.closePanelEvent = new core_1.EventEmitter();

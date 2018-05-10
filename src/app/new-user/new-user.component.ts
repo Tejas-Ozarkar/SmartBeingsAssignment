@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { User } from './../user';
+import * as $ from "jquery";
 @Component({
   selector: 'new-user',
   templateUrl: './new-user.component.html',
