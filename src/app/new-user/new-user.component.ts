@@ -19,14 +19,24 @@ export class NewUserComponent implements OnInit {
     this.closePanelEvent.emit();
   }
   onSubmitAddUser(user: User){
-    if(!this.validateEmail(user.email)){
-      alert('Invalid email');
-    }else if(!this.validateContact(user.contact)){
-      alert('Invalid contact');
-    }else{
+    console.log(user);
+    $(".email").next(".validation").remove(); 
+    $(".contact").next(".validation").remove(); 
+
+    if(this.validateEmail(user.email)&&this.validateContact(user.contact)){
+     
       this.addUserEvent.emit(user);  
     }
-    
+    else{
+      if(!this.validateEmail(user.email)){
+        $(".email").after("<div class='validation' style='color: red;'>Please Enter Valid Email</div>");
+      }
+      if(!this.validateContact(user.contact)){
+        $(".contact").after("<div class='validation' style='color: red;'>Please Enter Valid Contact</div>");
+      }
+    }
+   
+   
   }
 
   validateEmail(email) {

@@ -29,9 +29,33 @@ export class EditUserComponent implements OnInit {
    
   }
 
-  onSubmitEditUser(user: User){
-    console.log(user);
-    this.editUserEvent.emit(user);
-    
+  onSubmitEditUser(){
+   
+    $(".email").next(".validation").remove(); 
+    $(".contact").next(".validation").remove(); 
+
+    if(this.validateEmail(this.user.email)&&this.validateContact(this.user.contact)){
+     
+      this.editUserEvent.emit(this.user);
+
+    }
+    else{
+      if(!this.validateEmail(this.user.email)){
+        $(".email").after("<div class='validation' style='color: red;'>Please Enter Valid Email</div>");
+      }
+      if(!this.validateContact(this.user.contact)){
+        $(".contact").after("<div class='validation' style='color: red;'>Please Enter Valid Contact</div>");
+      }
+    }
+   
+  }
+
+  validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+  validateContact(contact) {
+    var re = /(^[0-9-]*$)/;
+    return re.test(contact);
   }
 }

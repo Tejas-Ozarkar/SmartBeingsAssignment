@@ -149,7 +149,7 @@ exports.AppModule = AppModule;
 /***/ "./src/app/edit-user/edit-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"edit-main\">\n    <div class=\"edit-user-card\">\n        <h3>Edit User</h3>\n        <button (click)=\"closePanel()\" class=\"close-button\">x</button>\n        <form (ngSubmit)=\"onSubmitEditUser(form.value)\" #form=\"ngForm\">\n            <div class=\"top row\">\n                <div class=\"col-md-4\">\n                    <div class=\"profile\">\n                        <div class=\"profile-circle\">\n                            <img src=\"assets/img/avatar.png\">\n                        </div>\n                        <div class=\"edit-buttons\">\n                            <button>Update</button><img src=\"assets/img/bin.png\">\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-md-8\">\n                    <div class=\"form-group\">\n                        <label>Username</label>\n                        <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.username\" [ngModelOptions]=\"{standalone: true}\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label>Address</label>\n                        <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.address\" [ngModelOptions]=\"{standalone: true}\" />\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"form-group col-md-6\">\n                    <label>Contact</label>\n                    <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.contact\" [ngModelOptions]=\"{standalone: true}\" />\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <label>Email</label>\n                    <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" />\n                </div>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary form-control\">Save Changes</button>\n        </form>\n    </div>\n</div>"
+module.exports = "<div class=\"edit-main\">\n    <div class=\"edit-user-card\">\n        <h3>Edit User</h3>\n        <button (click)=\"closePanel()\" class=\"close-button\">x</button>\n        <form (ngSubmit)=\"onSubmitEditUser(form.value)\" #form=\"ngForm\">\n            <div class=\"top row\">\n                <div class=\"col-md-4\">\n                    <div class=\"profile\">\n                        <div class=\"profile-circle\">\n                            <img src=\"assets/img/avatar.png\">\n                        </div>\n                        <div class=\"edit-buttons\">\n                            <button>Update</button><img src=\"assets/img/bin.png\">\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-md-8\">\n                    <div class=\"form-group\">\n                        <label>Username</label>\n                        <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.username\" [ngModelOptions]=\"{standalone: true}\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label>Address</label>\n                        <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"user.address\" [ngModelOptions]=\"{standalone: true}\" />\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"form-group col-md-6\">\n                    <label>Contact</label>\n                    <input type=\"text\" class=\"form-control contact\" required [(ngModel)]=\"user.contact\" [ngModelOptions]=\"{standalone: true}\" />\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <label>Email</label>\n                    <input type=\"text\" class=\"form-control email\" required [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" />\n                </div>\n            </div>\n            <button [disabled]=\"(!user.address)||(!user.username)||(!user.email)||(!user.address)\" type=\"submit\" class=\"btn btn-primary form-control\">Save Changes</button>\n        </form>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -192,9 +192,28 @@ var EditUserComponent = /** @class */ (function () {
         this.user.email = this.oldUser.email;
         this.closeEditEvent.emit();
     };
-    EditUserComponent.prototype.onSubmitEditUser = function (user) {
-        console.log(user);
-        this.editUserEvent.emit(user);
+    EditUserComponent.prototype.onSubmitEditUser = function () {
+        $(".email").next(".validation").remove();
+        $(".contact").next(".validation").remove();
+        if (this.validateEmail(this.user.email) && this.validateContact(this.user.contact)) {
+            this.editUserEvent.emit(this.user);
+        }
+        else {
+            if (!this.validateEmail(this.user.email)) {
+                $(".email").after("<div class='validation' style='color: red;'>Please Enter Valid Email</div>");
+            }
+            if (!this.validateContact(this.user.contact)) {
+                $(".contact").after("<div class='validation' style='color: red;'>Please Enter Valid Contact</div>");
+            }
+        }
+    };
+    EditUserComponent.prototype.validateEmail = function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+    EditUserComponent.prototype.validateContact = function (contact) {
+        var re = /(^[0-9-]*$)/;
+        return re.test(contact);
     };
     EditUserComponent = __decorate([
         core_1.Component({
@@ -310,7 +329,7 @@ exports.HomeComponent = HomeComponent;
 /***/ "./src/app/new-user/new-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-main\">\n    <div class=\"new-user-card\">\n        <h3>Add New User</h3>\n        <button (click)=\"closePanel()\" class=\"close-button\">x</button>\n        <form (ngSubmit)=\"onSubmitAddUser(form.value)\" #form=\"ngForm\">\n            <div class=\"top row\">\n                <div class=\"col-md-4\">\n                    <div class=\"profile\">\n                        <div class=\"profile-circle \">\n                            <img src=\"assets/img/user.png\">\n                        </div>\n                        <button>Upload</button>\n                    </div>\n                </div>\n                <div class=\"col-md-8\">\n                    <div class=\"form-group\">\n                        <label>Username</label>\n                        <input type=\"text\" class=\"form-control\" required name=\"username\" ngModel />\n                    </div>\n                    <div class=\"form-group\">\n                        <label>Address</label>\n                        <input type=\"text\" class=\"form-control\" required name=\"address\" ngModel />\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"form-group col-md-6\">\n                    <label>Contact</label>\n                    <input type=\"text\" class=\"form-control\" required name=\"contact\" ngModel />\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <label>Email</label>\n                    <input type=\"text\" class=\"form-control\" required name=\"email\" ngModel />\n                </div>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary form-control\">Add New User</button>\n        </form>\n    </div>\n</div>"
+module.exports = "<div class=\"add-main\">\n    <div class=\"new-user-card\">\n        <h3>Add New User</h3>\n        <button (click)=\"closePanel()\" class=\"close-button\">x</button>\n        <form (ngSubmit)=\"onSubmitAddUser(form.value)\" #form=\"ngForm\">\n            <div class=\"top row\">\n                <div class=\"col-md-4\">\n                    <div class=\"profile\">\n                        <div class=\"profile-circle \">\n                            <img src=\"assets/img/user.png\">\n                        </div>\n                        <button>Upload</button>\n                    </div>\n                </div>\n                <div class=\"col-md-8\">\n                    <div class=\"form-group\">\n                        <label>Username</label>\n                        <input type=\"text\" class=\"form-control\" required name=\"username\" ngModel />\n                    </div>\n                    <div class=\"form-group\">\n                        <label>Address</label>\n                        <input type=\"text\" class=\"form-control\" required name=\"address\" ngModel />\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"form-group col-md-6\">\n                    <label>Contact</label>\n                    <input type=\"text\" class=\"form-control contact\" required name=\"contact\" ngModel />\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <label>Email</label>\n                    <input type=\"text\" class=\"form-control email\" required name=\"email\" ngModel />\n                </div>\n            </div>\n            <button [disabled]=\"(!form.value.contact)||(!form.value.username)||(!form.value.email)||(!form.value.address)\" id=\"add-user \" type=\"submit \" class=\"btn btn-primary form-control \">Add New User</button>\n        </form>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -348,14 +367,19 @@ var NewUserComponent = /** @class */ (function () {
         this.closePanelEvent.emit();
     };
     NewUserComponent.prototype.onSubmitAddUser = function (user) {
-        if (!this.validateEmail(user.email)) {
-            alert('Invalid email');
-        }
-        else if (!this.validateContact(user.contact)) {
-            alert('Invalid contact');
+        console.log(user);
+        $(".email").next(".validation").remove();
+        $(".contact").next(".validation").remove();
+        if (this.validateEmail(user.email) && this.validateContact(user.contact)) {
+            this.addUserEvent.emit(user);
         }
         else {
-            this.addUserEvent.emit(user);
+            if (!this.validateEmail(user.email)) {
+                $(".email").after("<div class='validation' style='color: red;'>Please Enter Valid Email</div>");
+            }
+            if (!this.validateContact(user.contact)) {
+                $(".contact").after("<div class='validation' style='color: red;'>Please Enter Valid Contact</div>");
+            }
         }
     };
     NewUserComponent.prototype.validateEmail = function (email) {
